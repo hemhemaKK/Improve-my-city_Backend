@@ -20,7 +20,7 @@ const app = express();
 // Middlewares
 app.use(express.json());
 app.use(cors({
-  origin: "https://improve-my-city-frontend-r5qi.vercel.app",
+  origin: "https://improve-my-city-frontend-r5qi.vercel.app","http://localhost:3000",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
