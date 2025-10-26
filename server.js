@@ -19,11 +19,25 @@ const app = express();
 
 // Middlewares
 app.use(express.json());
-app.use(cors({
-  origin: "https://improve-my-city-frontend-r5qi.vercel.app","http://localhost:3000",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      const allowedOrigins = [
+        "https://improve-my-city-frontend-r5qi.vercel.app",
+        "http://localhost:3000",
+      ];
+
+      // allow requests with no origin (like mobile apps or curl)
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true,
+  })
+);
 app.use(cookieParser());
 app.use(passport.initialize());
 
