@@ -20,10 +20,9 @@ const app = express();
 // Middlewares
 app.use(express.json());
 app.use(cors({
-  origin: [
-    "http://localhost:3000"
-  ],
-  credentials: true,
+  origin: "https://improve-my-city-frontend-r5qi.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
 }));
 app.use(cookieParser());
 app.use(passport.initialize());
