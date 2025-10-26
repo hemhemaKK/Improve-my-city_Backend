@@ -27,17 +27,17 @@ app.use(
         "http://localhost:3000",
       ];
 
-      // allow requests with no origin (like mobile apps or curl)
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
         callback(new Error("Not allowed by CORS"));
       }
     },
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // <-- added PATCH
     credentials: true,
   })
 );
+
 app.use(cookieParser());
 app.use(passport.initialize());
 
